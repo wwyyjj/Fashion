@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/layoutheadFoot"
+              android:background="@color/main">
+
+    <ImageView
+        android:id="@+id/leftImageView"
+        style="@style/titleImageView"
+        android:src="@mipmap/ic_normal_code"/>
+
+    <EditText
+        android:id="@+id/titleEditText"
+        style="@style/titleEditText"
+        />
+
+    <ImageView
+        android:id="@+id/rightImageView"
+        style="@style/titleImageView"
+        android:src="@mipmap/ic_normal_message"/>
+</LinearLayout>

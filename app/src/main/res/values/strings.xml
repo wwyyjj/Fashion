@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Fashion</string>
+    <string name="app_name_home">首页</string>
+    <string name="app_name_class">分类</string>
+    <string name="app_name_cart">购物车</string>
+    <string name="app_name_user">我的</string>
+    <string name="user_head_textView">15701572168</string>
 </resources>

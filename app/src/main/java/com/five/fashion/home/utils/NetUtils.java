@@ -1,4 +1,4 @@
-package com.five.fashion.utils;
+package com.five.fashion.home.utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,12 +6,16 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
+
 /**
- * Created by wangyajie on 2017/11/8.
+ * Created by fan on 2017/11/8.
  */
 
-public class NetworkUtils {
-    private NetworkUtils() {
+public class NetUtils {
+    private NetUtils() {
         throw new UnsupportedOperationException("u can't instance me...");
     }
 
@@ -74,6 +78,28 @@ public class NetworkUtils {
     public static boolean isConnected(Context context) {
         NetworkInfo info = getActiveNetworkInfo(context);
         return info != null && info.isConnected();
+    }
+
+    /**
+     * 用来获取手机拨号上网（包括CTWAP和CTNET）时由PDSN分配给手机终端的源IP地址。
+     *
+     * @return
+     * @author SHANHY
+     */
+    public static String getPsdnIp(Context context) {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+        return "";
     }
 
     /**
