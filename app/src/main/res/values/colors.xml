@@ -19,12 +19,8 @@
     <color name="blackSub">#333333</color>
     <!--<color name="red">#FF0000</color>-->
     <color name="redAdd">#DD0000</color>
-    <color name="colorWhite">#FFFDFB</color>
-    <color name="colorWhite2">#F9F9F9</color>
-    <color name="colorWhite3">#FFFFFF</color>
-    <color name="colorBorder">#A1A1A1</color>
-    <color name="colorPblBackground">#A1A1A4</color>
-    <color name="colorPrice">#FF7001</color>
+
+
     <!-- 列表分割线   色值#999999 -->
     <color name="list_divider">#999999</color>
     <!-- 选中态色块   色值#D7D7D7 -->
@@ -400,4 +396,12 @@
     <!-- 橙色 -->
     <color name="orange_color">#de6838</color>
     <color name="viewfinder_laser">#ffff0000</color>
+
+    <!--分类的颜色-->
+    <color name="colorWhite">#FFFDFB</color>
+    <color name="colorWhite2">#F9F9F9</color>
+    <color name="colorWhite3">#FFFFFF</color>
+    <color name="colorBorder">#A1A1A1</color>
+    <color name="colorPblBackground">#A1A1A4</color>
+    <color name="colorPrice">#FF7001</color>
 </resources>

@@ -37,7 +37,7 @@ public class HomeFrag extends Fragment implements HomeIView{
         return view;
     }
    /* private void ininData() {
-        OkHttp3Utils.getInstance().doGet(Api.HOME_PATH, new GsonObjectCallback<Homebean>() {
+        OkHttp3Utils.getInstance().doGet(UserApi.HOME_PATH, new GsonObjectCallback<Homebean>() {
             @Override
             public void onUi(Homebean homebean) {
                 Homebean.DataBean data = homebean.getData();
