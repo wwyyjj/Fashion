@@ -35,7 +35,7 @@ import okhttp3.Call;
  * Created by wangyajie on 2017/11/9.
  */
 
-public class SortFrag extends Fragment implements OneIView,TwoIView{
+public class SortFrag extends Fragment implements OneIView, TwoIView {
     @BindView(R.id.type_rvleft)
     RecyclerView rv_left;
     @BindView(R.id.type_rvright)
@@ -65,8 +65,8 @@ public class SortFrag extends Fragment implements OneIView,TwoIView{
         //RecyclerView设置布局管理器
         rv_right.setLayoutManager(rightLayoutManager);
         //获取后台数据，添加适配器
-//        getServerData();
-//        启动mvp
+        // getServerData();
+        // 启动mvp
         new OnePresenter(this).initOneModel();//一级的presenter
         twoPresenter1 = new TwoPresenter(this);//一二的presenter
 
@@ -120,7 +120,7 @@ public class SortFrag extends Fragment implements OneIView,TwoIView{
 
     }
 
-//    一级列表赋值
+    //    一级列表赋值
     @Override
     public void initOneadapter(final DataleftBean dataleftBean) {
         //适配器
@@ -135,13 +135,14 @@ public class SortFrag extends Fragment implements OneIView,TwoIView{
                 myAdapter_left.setTagPosition(position);
                 myAdapter_left.notifyDataSetChanged();
                 //请求二级数据
-//                getServerTypeData(dataleftBean.getDatas().getClass_list().get(position).getGc_id(), position);
+                //getServerTypeData(dataleftBean.getDatas().getClass_list().get(position).getGc_id(), position);
                 String gc_id = dataleftBean.getDatas().getClass_list().get(position).getGc_id();
-                twoPresenter1.initTwoModel(API.TYPE_BODY+"&gc_id=" + gc_id);
+                twoPresenter1.initTwoModel(API.TYPE_BODY + "&gc_id=" + gc_id);
             }
         });
     }
-//    二级列表赋值
+
+    //    二级列表赋值
     @Override
     public void initTwoadapter(DatarightBean datarightBean) {
         MyAdapter_right myAdapter_right = new MyAdapter_right(getActivity(), datarightBean.getDatas().getClass_list());

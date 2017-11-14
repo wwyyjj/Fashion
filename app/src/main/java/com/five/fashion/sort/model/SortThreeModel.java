@@ -23,6 +23,9 @@ public class SortThreeModel implements ThreeModel {
         this.initthree = initthree;
     }
 
+    public SortThreeModel() {
+    }
+
     public interface initThree{
         void getThreeData(DateGridBean dateGridBean);
     }
