@@ -5,4 +5,11 @@
     <string name="app_name_cart">购物车</string>
     <string name="app_name_user">我的</string>
     <string name="user_head_textView">未登录</string>
+    <string name="new_user">新用户注册</string>
+    <string name="edit_name">请输入用户名</string>
+    <string name="edit_pwd">请输入密码</string>
+    <string name="edit_sucess_pwd">确认输入密码</string>
+    <string name="edit_email">请填写邮箱</string>
+    <string name="btn_sign">注册</string>
+    <string name="cart">购物车</string>
 </resources>

@@ -13,38 +13,38 @@
         android:background="@color/main"
         android:drawableLeft="@mipmap/btn_back_detail_normal"
         android:gravity="center"
-        android:text="新用户注册"/>
+        android:text="@string/new_user"/>
 
     <EditText
         android:id="@+id/zc_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="请输入用户名"/>
+        android:hint="@string/edit_name"/>
 
     <EditText
         android:id="@+id/zc_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="请输入密码"/>
+        android:hint="@string/edit_pwd"/>
 
     <EditText
         android:id="@+id/zc_password2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="确认输入密码"/>
+        android:hint="@string/edit_sucess_pwd"/>
 
     <EditText
         android:id="@+id/zc_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:hint="请填写邮箱"/>
+        android:hint="@string/edit_email"/>
     <Button
         android:id="@+id/zc_btn"
-        android:text="注册"
+        android:text="@string/btn_sign"
         android:background="@color/main"
         android:gravity="center"
         android:layout_width="match_parent"

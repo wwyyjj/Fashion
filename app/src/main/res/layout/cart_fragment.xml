@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:minHeight="48dp"
-                android:text="购物车"
+                android:text="@string/cart"
                 android:textColor="#1a1a1a"
                 android:textSize="16sp"/>
 

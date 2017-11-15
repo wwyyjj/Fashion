@@ -5,5 +5,5 @@ package com.five.fashion.sort.model;
  */
 
 public interface ThreeModel {
-    void initData(String url);
+    void initData(String url,getListData getlistData);
 }

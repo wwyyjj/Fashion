@@ -17,33 +17,9 @@ import rx.schedulers.Schedulers;
  */
 
 public class SortThreeModel implements ThreeModel {
-    private initThree initthree;
 
-    public SortThreeModel(initThree initthree) {
-        this.initthree = initthree;
-    }
-
-    public SortThreeModel() {
-    }
-
-    public interface initThree{
-        void getThreeData(DateGridBean dateGridBean);
-    }
     @Override
-    public void initData(String url) {
-       /* //第三次请求网络 获取第三级数据
-        OkHttp3Utils.doGet(API.TYPE_PATH + "&gc_id=" + list.get(position).getGc_id(), new GsonObjectCallback<DateGridBean>() {
-            @Override
-            public void onUi(DateGridBean dateGridBean) {
-                myHolder.gv.setAdapter(new MyAdapter_TypeGridView(context,dateGridBean.getDatas().getClass_list()));
-            }
-
-            @Override
-            public void onFailed(Call call, IOException e) {
-
-            }
-        });*/
-
+    public void initData(String url, final getListData getlistData) {
         //创建Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API.TYPE_IP)
@@ -69,9 +45,27 @@ public class SortThreeModel implements ThreeModel {
                     }
 
                     @Override
-                    public void onNext(DateGridBean dateGridBean) {
-                        initthree.getThreeData(dateGridBean);
+                    public void onNext(final DateGridBean dateGridBean) {
+                       getlistData.getData(dateGridBean);
                     }
                 });
     }
+
+  /*  @Override
+    public void initData(String url) {
+       *//* //第三次请求网络 获取第三级数据
+        OkHttp3Utils.doGet(API.TYPE_PATH + "&gc_id=" + list.get(position).getGc_id(), new GsonObjectCallback<DateGridBean>() {
+            @Override
+            public void onUi(DateGridBean dateGridBean) {
+                myHolder.gv.setAdapter(new MyAdapter_TypeGridView(context,dateGridBean.getDatas().getClass_list()));
+            }
+
+            @Override
+            public void onFailed(Call call, IOException e) {
+
+            }
+        });*//*
+
+
+    }*/
 }

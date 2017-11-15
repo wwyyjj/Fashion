@@ -11,14 +11,11 @@ import android.widget.TextView;
 import com.five.fashion.R;
 import com.five.fashion.sort.bean.DatarightBean;
 import com.five.fashion.sort.bean.DateGridBean;
+import com.five.fashion.sort.model.SortThreeModel;
+import com.five.fashion.sort.model.getListData;
 import com.five.fashion.sort.utils.API;
-import com.five.fashion.sort.utils.GsonObjectCallback;
-import com.five.fashion.sort.utils.OkHttp3Utils;
 
-import java.io.IOException;
 import java.util.List;
-
-import okhttp3.Call;
 
 /**
  * autour: 樊彦龙
@@ -51,7 +48,13 @@ public class MyAdapter_right extends RecyclerView.Adapter<RecyclerView.ViewHolde
         //设置标题
         myHolder.tv_left_type.setText(list.get(position).getGc_name());
         //第三次请求网络 获取第三级数据
-       OkHttp3Utils.doGet(API.TYPE_PATH + "&gc_id=" + list.get(position).getGc_id(), new GsonObjectCallback<DateGridBean>() {
+        new SortThreeModel().initData(API.TYPE_BODY + "&gc_id=" + list.get(position).getGc_id(), new getListData() {
+            @Override
+            public void getData(DateGridBean dateGridBean) {
+                myHolder.gv.setAdapter(new MyAdapter_TypeGridView(context,dateGridBean.getDatas().getClass_list()));
+            }
+        });
+       /*OkHttp3Utils.doGet(API.TYPE_PATH + "&gc_id=" + list.get(position).getGc_id(), new GsonObjectCallback<DateGridBean>() {
             @Override
             public void onUi(DateGridBean dateGridBean) {
                 myHolder.gv.setAdapter(new MyAdapter_TypeGridView(context,dateGridBean.getDatas().getClass_list()));
@@ -62,7 +65,7 @@ public class MyAdapter_right extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             }
         });
-
+*/
     }
 
     @Override
