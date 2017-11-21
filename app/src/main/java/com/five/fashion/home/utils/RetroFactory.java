@@ -22,9 +22,10 @@ public class RetroFactory {
             .readTimeout(30, TimeUnit.SECONDS)
             .build();
     private static ApiServer retrofitService = new Retrofit.Builder()
-            .baseUrl(Api.HOME_PATH)
+
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .baseUrl(Api.HOME_PATH)
             .client(httpClient)
             .build()
             .create(ApiServer.class);

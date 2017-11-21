@@ -1,7 +1,5 @@
 package com.five.fashion.login.presenter;
 
-import android.util.Log;
-
 import com.five.fashion.login.bean.LoginBean;
 import com.five.fashion.login.model.Loginmodel;
 import com.five.fashion.login.view.IView;
@@ -22,13 +20,11 @@ public class LoginPresenter implements Loginmodel.setloginData{
     }
 
     public void initmodledata(Map<String, String> map){
-        Log.e("LoginPresenter", "initmodledata: "+map.toString());
         loginmodel.initLoginData(map);
     }
 
     @Override
     public void loginData(LoginBean loginBean) {
-        Log.e("LoginPresenter", "initmodledata: "+loginBean.toString());
         iView.isLogin(loginBean);
     }
 }

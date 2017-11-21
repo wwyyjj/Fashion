@@ -1,6 +1,6 @@
 package com.five.fashion.sort.presenter;
 
-import com.five.fashion.sort.bean.DataleftBean;
+import com.five.fashion.sort.bean.SortOnebean;
 import com.five.fashion.sort.model.SortOneModel;
 import com.five.fashion.sort.view.OneIView;
 
@@ -22,7 +22,7 @@ public class OnePresenter implements SortOneModel.initone {
     }
 
     @Override
-    public void getOneData(DataleftBean dataleftBean) {
+    public void getOneData(SortOnebean dataleftBean) {
         oneIView.initOneadapter(dataleftBean);
     }
 }

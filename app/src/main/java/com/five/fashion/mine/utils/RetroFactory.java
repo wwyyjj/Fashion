@@ -21,10 +21,11 @@ public class RetroFactory {
             .readTimeout(30, TimeUnit.SECONDS)
             .build();
     private static UserApiServer retrofitService = new Retrofit.Builder()
-            .baseUrl(UserApi.USERPATH)
+
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
 //            .client(httpClient)
+            .baseUrl(UserApi.USERPATH)
             .build()
             .create(UserApiServer.class);
 

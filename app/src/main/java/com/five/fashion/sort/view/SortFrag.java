@@ -16,19 +16,18 @@ import android.widget.LinearLayout;
 import com.five.fashion.R;
 import com.five.fashion.sort.adapter.MyAdapter_left;
 import com.five.fashion.sort.adapter.MyAdapter_right;
-import com.five.fashion.sort.bean.DataleftBean;
-import com.five.fashion.sort.bean.DatarightBean;
 import com.five.fashion.sort.bean.Datebeanitem;
+import com.five.fashion.sort.bean.SortOnebean;
+import com.five.fashion.sort.bean.SortTwobean;
 import com.five.fashion.sort.presenter.OnePresenter;
 import com.five.fashion.sort.presenter.TwoPresenter;
-import com.five.fashion.sort.utils.API;
 import com.five.fashion.sort.utils.GsonObjectCallback;
 import com.five.fashion.sort.utils.OkHttp3Utils;
+import com.five.fashion.utils.API;
 
 import java.io.IOException;
+import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import okhttp3.Call;
 
 /**
@@ -36,17 +35,15 @@ import okhttp3.Call;
  */
 
 public class SortFrag extends Fragment implements OneIView, TwoIView {
-    @BindView(R.id.type_rvleft)
     RecyclerView rv_left;
-    @BindView(R.id.type_rvright)
     RecyclerView rv_right;
     private TwoPresenter twoPresenter1;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.sort_fragment, null, false);
-        ButterKnife.bind(this, view);
+        rv_left=  view.findViewById(R.id.type_rvleft);
+        rv_right=  view.findViewById(R.id.type_rvright);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
         //得到WindowManager
         WindowManager windowManager = getActivity().getWindowManager();
@@ -69,6 +66,7 @@ public class SortFrag extends Fragment implements OneIView, TwoIView {
         // 启动mvp
         new OnePresenter(this).initOneModel();//一级的presenter
         twoPresenter1 = new TwoPresenter(this);//一二的presenter
+        twoPresenter1.initTwoModel(API.SORTSONG + "?cid=" + 1);
 
         return view;
     }
@@ -122,9 +120,10 @@ public class SortFrag extends Fragment implements OneIView, TwoIView {
 
     //    一级列表赋值
     @Override
-    public void initOneadapter(final DataleftBean dataleftBean) {
+    public void initOneadapter(final SortOnebean dataleftBean) {
+        List<SortOnebean.DataBean> data = dataleftBean.getData();
         //适配器
-        final MyAdapter_left myAdapter_left = new MyAdapter_left(getActivity(), dataleftBean.getDatas().getClass_list());
+        final MyAdapter_left myAdapter_left = new MyAdapter_left(getActivity(), dataleftBean.getData());
         rv_left.setAdapter(myAdapter_left);
         //第一个子条目显示其二级数据
 
@@ -136,16 +135,17 @@ public class SortFrag extends Fragment implements OneIView, TwoIView {
                 myAdapter_left.notifyDataSetChanged();
                 //请求二级数据
                 //getServerTypeData(dataleftBean.getDatas().getClass_list().get(position).getGc_id(), position);
-                String gc_id = dataleftBean.getDatas().getClass_list().get(position).getGc_id();
-                twoPresenter1.initTwoModel(API.TYPE_BODY + "&gc_id=" + gc_id);
+                String gc_id = dataleftBean.getData().get(position).getCid();
+                twoPresenter1.initTwoModel(API.SORTSONG + "?cid=" + gc_id);
             }
         });
     }
 
     //    二级列表赋值
     @Override
-    public void initTwoadapter(DatarightBean datarightBean) {
-        MyAdapter_right myAdapter_right = new MyAdapter_right(getActivity(), datarightBean.getDatas().getClass_list());
+    public void initTwoadapter(SortTwobean datarightBean) {
+        List<SortTwobean.DataBean> data = datarightBean.getData();
+        MyAdapter_right myAdapter_right = new MyAdapter_right(getActivity(), datarightBean.getData());
         rv_right.setAdapter(myAdapter_right);
     }
 
@@ -153,22 +153,4 @@ public class SortFrag extends Fragment implements OneIView, TwoIView {
         void getData(String string);
     }
 
-   /*///请求二级数据
-    public void getServerTypeData(final String gc_id, final int position) {
-        OkHttp3Utils.doGet(API.TYPE_PATH + "&gc_id=" + gc_id, new GsonObjectCallback<DatarightBean>() {
-            @Override
-            public void onUi(DatarightBean datarightBean) {
-                MyAdapter_right myAdapter_right = new MyAdapter_right(getActivity(), datarightBean.getDatas().getClass_list());
-                rv_right.setAdapter(myAdapter_right);
-            }
-
-            @Override
-            public void onFailed(Call call, IOException e) {
-
-            }
-        });
-
-
-    }
-  */
 }

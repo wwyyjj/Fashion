@@ -1,1 +1,1 @@
-include ':app', ':okhttp3library', ':ddxc'
+include ':app', ':ddxc'

@@ -1,12 +1,9 @@
 package com.five.fashion.sort.model;
 
-import com.five.fashion.sort.bean.DataleftBean;
-import com.five.fashion.sort.utils.API;
-import com.five.fashion.sort.utils.SortApiServer;
+import com.five.fashion.sort.bean.SortOnebean;
+import com.five.fashion.utils.API;
+import com.five.fashion.utils.RetroFactory;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -18,13 +15,12 @@ import rx.schedulers.Schedulers;
 
 public class SortOneModel implements  Onemodel{
     private initone initone;
-
     public SortOneModel(SortOneModel.initone initone) {
         this.initone = initone;
     }
 
     public interface initone{
-        void getOneData(DataleftBean dataleftBean);
+        void getOneData(SortOnebean dataleftBean);
     }
     @Override
     public void initone() {
@@ -39,20 +35,20 @@ public class SortOneModel implements  Onemodel{
 
             }
         });*/
-        //创建Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API.TYPE_IP)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-        //通过动态代理得到网络接口对象
-        SortApiServer apiServer = retrofit.create(SortApiServer.class);
-
-        Observable<DataleftBean> left = apiServer.getLeft(API.TYPE_BODY);
+//        //创建Retrofit
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(API.SORTIP)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .build();
+//        //通过动态代理得到网络接口对象
+//        SortApiServer apiServer = retrofit.create(SortApiServer.class);
+//
+//        Observable<SortOnebean> left = apiServer.getLeft(API.SORTBODY);
+        Observable<SortOnebean> left = RetroFactory.getInstance().getLeft(API.SORTBODY);
         left.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DataleftBean>() {
-
+                .subscribe(new Observer<SortOnebean>() {
                     @Override
                     public void onCompleted() {
 
@@ -64,8 +60,8 @@ public class SortOneModel implements  Onemodel{
                     }
 
                     @Override
-                    public void onNext(DataleftBean dataleftBean) {
-                        initone.getOneData(dataleftBean);
+                    public void onNext(SortOnebean sortOnebean) {
+                        initone.getOneData(sortOnebean);
                     }
                 });
     }

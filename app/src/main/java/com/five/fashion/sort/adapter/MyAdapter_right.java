@@ -9,11 +9,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.five.fashion.R;
-import com.five.fashion.sort.bean.DatarightBean;
-import com.five.fashion.sort.bean.DateGridBean;
-import com.five.fashion.sort.model.SortThreeModel;
-import com.five.fashion.sort.model.getListData;
-import com.five.fashion.sort.utils.API;
+import com.five.fashion.sort.bean.SortTwobean;
 
 import java.util.List;
 
@@ -23,11 +19,12 @@ import java.util.List;
  * update: 2017/10/20
  */
 
-public class MyAdapter_right extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class MyAdapter_right extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<DatarightBean.DatasBean.ClassListBean> list;
+    private List<SortTwobean.DataBean> list;
+    public static final String TAG = "MyAdapter_right";
 
-    public MyAdapter_right(Context context, List<DatarightBean.DatasBean.ClassListBean> list) {
+    public MyAdapter_right(Context context,List<SortTwobean.DataBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -41,19 +38,27 @@ public class MyAdapter_right extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-//        SortThreeModel sortThreeModel = new SortThreeModel();
-//        sortThreeModel.initData(API.TYPE_BODY+"&gc_id=" + list.get(position).getGc_id());
+        //        SortThreeModel sortThreeModel = new SortThreeModel();
+        //        sortThreeModel.initData(API.TYPE_BODY+"&gc_id=" + list.get(position).getGc_id());
         //设置种类标题
         final MyLeftViewHolder myHolder = new MyLeftViewHolder(holder.itemView);
         //设置标题
-        myHolder.tv_left_type.setText(list.get(position).getGc_name());
+        myHolder.tv_left_type.setText(list.get(position).getName());
         //第三次请求网络 获取第三级数据
-        new SortThreeModel().initData(API.TYPE_BODY + "&gc_id=" + list.get(position).getGc_id(), new getListData() {
+        /*new SortThreeModel().initData(API.TYPE_BODY + "&gc_id=" + list.get(position).getGc_id(), new getListData() {
             @Override
             public void getData(DateGridBean dateGridBean) {
-                myHolder.gv.setAdapter(new MyAdapter_TypeGridView(context,dateGridBean.getDatas().getClass_list()));
+                MyAdapter_TypeGridView myAdapter_typeGridView = new MyAdapter_TypeGridView(context, dateGridBean.getDatas().getClass_list());
+                myHolder.gv.setAdapter(myAdapter_typeGridView);
+                Log.e(TAG, "getData: " );
+
             }
-        });
+        });*/
+        // 获取第三级数据
+        List<SortTwobean.DataBean.ListBean> list = this.list.get(position).getList();
+
+        MyAdapter_TypeGridView myAdapter_typeGridView = new MyAdapter_TypeGridView(context, list);
+        myHolder.gv.setAdapter(myAdapter_typeGridView);
        /*OkHttp3Utils.doGet(API.TYPE_PATH + "&gc_id=" + list.get(position).getGc_id(), new GsonObjectCallback<DateGridBean>() {
             @Override
             public void onUi(DateGridBean dateGridBean) {
@@ -73,9 +78,10 @@ public class MyAdapter_right extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return list.size();
     }
 
-    public class MyLeftViewHolder extends RecyclerView.ViewHolder{
+    public class MyLeftViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_left_type;
         private GridView gv;
+
         public MyLeftViewHolder(View itemView) {
             super(itemView);
             tv_left_type = (TextView) itemView.findViewById(R.id.tv_type);
@@ -87,7 +93,7 @@ public class MyAdapter_right extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public OnRecycleViewItemClickListener recycleViewItemClickListener;
 
     //定义点击接口
-    public interface OnRecycleViewItemClickListener{
+    public interface OnRecycleViewItemClickListener {
         void recycleViewItemClickListener(int position, View view, RecyclerView.ViewHolder viewHolder);
     }
 

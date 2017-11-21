@@ -10,7 +10,6 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/ddxc" />
-            <option value="$PROJECT_DIR$/okhttp3library" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

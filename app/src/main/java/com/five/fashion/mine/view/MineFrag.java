@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,16 +12,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.five.fashion.R;
 import com.five.fashion.login.view.LoginActivity;
-import com.five.fashion.mine.bean.EventBusUserNameBean;
 import com.five.fashion.mine.utils.UserApi;
+import com.five.fashion.order.view.OrderActivity;
 import com.five.fashion.utils.SPUtils;
 import com.five.fashion.utils.Toasts;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,39 +69,62 @@ public class MineFrag extends Fragment {
     TextView settingTextView;
     @BindView(R.id.user_main)
     LinearLayout userMain;
-
+    private String o;
+    public static final String TAG = "MineFrag";
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.mine_fragment, null, false);
         ButterKnife.bind(this, view);
-        //注册EventBus事件
-        EventBus.getDefault().register(this);
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        o = (String) SPUtils.get(getActivity(), UserApi.ISLOGIN, "1");
+
+        if ("0".equals("0")) {
+            String name = (String) SPUtils.get(getActivity(), UserApi.UNAME, "未登录");
+            userHeadTextView.setText(name);
+        } else {
+            userHeadTextView.setText("未登录");
+        }
+        boolean o = (boolean) SPUtils.get(getActivity(), UserApi.ISQQ, false);
+        if (o == true) {
+            String name = (String) SPUtils.get(getActivity(), UserApi.QQNAME, "未获取");
+            String img = (String) SPUtils.get(getActivity(), UserApi.QQIMG, null);
+            Log.e(TAG, "onResume: QQ的头像" + img);
+            userHeadTextView.setText(name);
+            Glide.with(getActivity()).load("http://q.qlogo.cn/qqapp/1105602574/01097E9E8E26024944BDC736581FECE1/100").placeholder(R.mipmap.ic_launcher).into(userHeadImage);
+        }
+    }
 
     @OnClick(R.id.user_head_image)
     public void onViewClicked() {
-        String o = (String) SPUtils.get(getActivity(), UserApi.ISLOGIN, "1");
+        Log.e(TAG, "onViewClicked: " + SPUtils.getAll(getActivity()));
         if ("0".equals(o))
             Toasts.showShort(getActivity(), "已登录");
-            startActivity(new Intent(getActivity(), LoginActivity.class));
+        startActivity(new Intent(getActivity(), LoginActivity.class));
 
     }
-
-    //    事件订阅者处理事件
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMoonEvent(EventBusUserNameBean eventBusUserNameBean){
-        userHeadTextView.setText(eventBusUserNameBean.getName());
-        Toasts.showShort(getActivity(),eventBusUserNameBean.getName().toString());
+    @OnClick({R.id.orderTextView, R.id.orderWaitPayTextView, R.id.orderWaitDriveTextView, R.id.orderWaitReceiptTextView, R.id.orderWaitCommentTextView, R.id.orderWaitRefundTextView})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.orderTextView:
+                startActivity(new Intent(getActivity(), OrderActivity.class));
+                break;
+            case R.id.orderWaitPayTextView:
+                break;
+            case R.id.orderWaitDriveTextView:
+                break;
+            case R.id.orderWaitReceiptTextView:
+                break;
+            case R.id.orderWaitCommentTextView:
+                break;
+            case R.id.orderWaitRefundTextView:
+                break;
+        }
     }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        //取消注册事件
-        EventBus.getDefault().unregister(this);
-    }
-
 }

@@ -1,12 +1,10 @@
 package com.five.fashion.sort.model;
 
-import com.five.fashion.sort.bean.DateGridBean;
-import com.five.fashion.sort.utils.API;
-import com.five.fashion.sort.utils.SortApiServer;
+import android.util.Log;
 
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import com.five.fashion.sort.bean.SortXQbean;
+import com.five.fashion.utils.RetroFactory;
+
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -17,22 +15,23 @@ import rx.schedulers.Schedulers;
  */
 
 public class SortThreeModel implements ThreeModel {
-
+public static final String TAG="SortThreeModel";
     @Override
     public void initData(String url, final getListData getlistData) {
-        //创建Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API.TYPE_IP)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-        //通过动态代理得到网络接口对象
-        SortApiServer apiServer = retrofit.create(SortApiServer.class);
-
-        Observable<DateGridBean> three = apiServer.getThree(url);
+        Observable<SortXQbean> three = RetroFactory.getInstance().getThree(url);
+//        //创建Retrofit
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(API.SORTIP)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+//                .build();
+//        //通过动态代理得到网络接口对象
+//        SortApiServer apiServer = retrofit.create(SortApiServer.class);
+//
+//        Observable<SortXQbean> three = apiServer.getThree(url);
         three.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<DateGridBean>() {
+                .subscribe(new Observer<SortXQbean>() {
 
                     @Override
                     public void onCompleted() {
@@ -41,11 +40,11 @@ public class SortThreeModel implements ThreeModel {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e(TAG, "onError: "+e.getMessage());
                     }
 
                     @Override
-                    public void onNext(final DateGridBean dateGridBean) {
+                    public void onNext(final SortXQbean dateGridBean) {
                        getlistData.getData(dateGridBean);
                     }
                 });

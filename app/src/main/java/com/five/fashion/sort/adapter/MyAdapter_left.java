@@ -8,9 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.five.fashion.R;
-import com.five.fashion.sort.bean.DataleftBean;
+import com.five.fashion.sort.bean.SortOnebean;
 
 import java.util.List;
 
@@ -23,7 +22,7 @@ import java.util.List;
 
 public class MyAdapter_left extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<DataleftBean.DatasBean.ClassListBean> list;
+    private  List<SortOnebean.DataBean> list;
     public static int tagPosition;
 
     public static int getTagPosition() {
@@ -34,7 +33,7 @@ public class MyAdapter_left extends RecyclerView.Adapter<RecyclerView.ViewHolder
         MyAdapter_left.tagPosition = tagPosition;
     }
 
-    public MyAdapter_left(Context context, List<DataleftBean.DatasBean.ClassListBean> list) {
+    public MyAdapter_left(Context context,  List<SortOnebean.DataBean> list) {
         this.context = context;
         this.list = list;
     }
@@ -56,17 +55,17 @@ public class MyAdapter_left extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         //给文本框赋值
-        ((MyLeftViewHolder) holder).tv_left_type.setText(list.get(position).getGc_name());
+        ((MyLeftViewHolder) holder).tv_left_type.setText(list.get(position).getName());
         if (position == getTagPosition()) {
             holder.itemView.setBackgroundResource(R.color.colorPblBackground);
         } else {
             holder.itemView.setBackgroundResource(R.color.colorWhite3);
         }
-        //设置种类图片
-        if (list.get(position).getImage().length()>0) {
-          //  Picasso.with(context).load(MyUtils.Unicode2GBK(list.get(position).getImage())).into(((MyLeftViewHolder) holder).iv_type_pic);
-            Glide.with(context).load(list.get(position).getImage()).into(((MyLeftViewHolder) holder).iv_type_pic);
-        }
+//        //设置种类图片
+//        if (list.get(position).getImage().length()>0) {
+//          //  Picasso.with(context).load(MyUtils.Unicode2GBK(list.get(position).getImage())).into(((MyLeftViewHolder) holder).iv_type_pic);
+//            Glide.with(context).load(list.get(position).getImage()).into(((MyLeftViewHolder) holder).iv_type_pic);
+//        }
     }
 
     @Override

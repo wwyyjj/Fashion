@@ -1,7 +1,5 @@
 package com.five.fashion.login.model;
 
-import android.util.Log;
-
 import com.five.fashion.login.bean.LoginBean;
 import com.five.fashion.mine.utils.RetroFactory;
 import com.five.fashion.mine.utils.UserApi;
@@ -46,10 +44,7 @@ public class Loginmodel implements IModel{
 
                     @Override
                     public void onNext(LoginBean loginBean) {
-                        String code = loginBean.getCode();
-                        String msg = loginBean.getMsg();
-                        setlogindata.loginData(new LoginBean(msg,code));
-                        Log.e("Loginmodel", "onNext: "+loginBean.toString() );
+                        setlogindata.loginData(loginBean);
                     }
                 });
     }

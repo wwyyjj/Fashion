@@ -26,7 +26,6 @@ public class RecyclerViewClickListener implements RecyclerView.OnItemTouchListen
     //内部接口，定义点击方法以及长按方法
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
-
         void onItemLongClick(View view, int position);
     }
 

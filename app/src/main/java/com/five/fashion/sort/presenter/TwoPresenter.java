@@ -1,6 +1,6 @@
 package com.five.fashion.sort.presenter;
 
-import com.five.fashion.sort.bean.DatarightBean;
+import com.five.fashion.sort.bean.SortTwobean;
 import com.five.fashion.sort.model.SortTwoModel;
 import com.five.fashion.sort.view.TwoIView;
 
@@ -24,7 +24,7 @@ public class TwoPresenter implements SortTwoModel.initTwo {
 
 
     @Override
-    public void getTwoData(DatarightBean datarightBean) {
+    public void getTwoData(SortTwobean datarightBean) {
         twoIView.initTwoadapter(datarightBean);
     }
 }

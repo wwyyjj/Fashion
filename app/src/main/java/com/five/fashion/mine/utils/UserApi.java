@@ -14,5 +14,15 @@ public class UserApi {
     public static final String SIGNIN="reg";
 //    SPUtils是否登录key
     public static final String ISLOGIN="isLogin";
+//    用户id
+    public static final String UID="uid";
+    //    用户名
+    public static final String UNAME="username";
+//    是否QQ登录
+public static final String ISQQ="isQQ";
 
+    //    QQ用戶名
+    public static final String QQNAME="qqname";
+//    QQ头像
+    public static final String QQIMG="qqimg";
 }

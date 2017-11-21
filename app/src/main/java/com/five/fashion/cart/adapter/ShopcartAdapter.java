@@ -17,9 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.five.fashion.R;
 import com.five.fashion.cart.cartbean.GoodsInfo;
 import com.five.fashion.cart.cartbean.StoreInfo;
+import com.five.fashion.main.MyApp;
 
 import java.util.List;
 import java.util.Map;
@@ -35,7 +37,7 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
     private CheckInterface checkInterface;
     private ModifyCountInterface modifyCountInterface;
     private int flag = 0;
-   private GroupEdtorListener mListener;
+    private GroupEdtorListener mListener;
 
     public GroupEdtorListener getmListener() {
         return mListener;
@@ -121,9 +123,7 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
             gholder.tv_group_name.setText(group.getName());
             gholder.cb_check.setOnClickListener(new OnClickListener() {
                 @Override
-                public void onClick(View v)
-
-                {
+                public void onClick(View v) {
                     group.setChoosed(((CheckBox) v).isChecked());
                     checkInterface.checkGroup(groupPosition, ((CheckBox) v).isChecked());// 暴露组选接口
                 }
@@ -169,7 +169,7 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
             cholder.ll_edtor = (LinearLayout) convertView.findViewById(R.id.ll_edtor);
             cholder.tv_colorsize = (TextView) convertView.findViewById(R.id.tv_colorsize);
             cholder.tv_goods_delete = (TextView) convertView.findViewById(R.id.tv_goods_delete);
-            cholder.iv_adapter_list_pic= (ImageView) convertView.findViewById(R.id.iv_adapter_list_pic);
+            cholder.iv_adapter_list_pic = (ImageView) convertView.findViewById(R.id.iv_adapter_list_pic);
             convertView.setTag(cholder);
         } else {
             cholder = (ChildViewHolder) convertView.getTag();
@@ -186,12 +186,12 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
             cholder.tv_product_desc.setText(goodsInfo.getDesc());
             cholder.tv_price.setText("￥" + goodsInfo.getPrice() + "");
             cholder.tv_count.setText(goodsInfo.getCount() + "");
-            cholder.iv_adapter_list_pic.setImageResource(goodsInfo.getGoodsImg());
+            Glide.with(MyApp.getContext()).load(goodsInfo.getGoodsImg()).into(cholder.iv_adapter_list_pic);
             cholder.tv_color_size.setText("颜色：" + goodsInfo.getColor() + "," + "尺码：" + goodsInfo.getSize() + "瓶/斤");
-            SpannableString spanString = new SpannableString("￥"+ String.valueOf(goodsInfo.getDiscountPrice()));
+            SpannableString spanString = new SpannableString("￥" + String.valueOf(goodsInfo.getDiscountPrice()));
             StrikethroughSpan span = new StrikethroughSpan();
-            spanString.setSpan(span, 0, String.valueOf(goodsInfo.getDiscountPrice()).length()+1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            if(cholder.tv_discount_price.getText().toString().length()>0){
+            spanString.setSpan(span, 0, String.valueOf(goodsInfo.getDiscountPrice()).length() + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            if (cholder.tv_discount_price.getText().toString().length() > 0) {
                 cholder.tv_discount_price.setText("");
             }
             cholder.tv_discount_price.append(spanString);
@@ -330,6 +330,7 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
 
         /**
          * 删除子item
+         *
          * @param groupPosition
          * @param childPosition
          */
@@ -339,7 +340,7 @@ public class ShopcartAdapter extends BaseExpandableListAdapter {
     /**
      * 监听编辑状态
      */
-    public interface GroupEdtorListener{
+    public interface GroupEdtorListener {
         public void groupEdit(int groupPosition);
     }
 }

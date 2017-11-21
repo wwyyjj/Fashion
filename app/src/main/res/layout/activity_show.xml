@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.five.fashion.sort.show.ShowActivity">
+
+    <com.youth.banner.Banner
+        android:id="@+id/goodbanner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <TextView
+        android:id="@+id/goodname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goodbanner"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/goodimg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goodname"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/goodprice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/goodimg"
+        android:gravity="center"/>
+    <com.five.fashion.media.IjkVideoView
+        android:layout_below="@+id/goodprice"
+        android:id="@+id/IjkVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+    </com.five.fashion.media.IjkVideoView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/startijkplayer"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/fuchsia"
+            android:gravity="center"
+            android:text="@string/startijkplayer"/>
+        <TextView
+            android:id="@+id/addcart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/linen"
+            android:gravity="center"
+            android:text="@string/addcart"/>
+
+        <TextView
+            android:id="@+id/actionShop"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/main"
+            android:gravity="center"
+            android:text="@string/actionshop"/>
+    </LinearLayout>
+</RelativeLayout>

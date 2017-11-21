@@ -45,7 +45,6 @@ public class SignInActivity extends AppCompatActivity implements SView {
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         signPresenter = new SignPresenter(this);
-
     }
     @Override
     public void isSign(ZCBean zcBean) {

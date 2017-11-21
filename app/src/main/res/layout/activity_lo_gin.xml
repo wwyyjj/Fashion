@@ -27,14 +27,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="手机号/用户名/邮箱"/>
+        android:hint="@string/edit_name"/>
 
     <EditText
         android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="请输入密码"/>
+        android:hint="@string/edit_pwd"/>
 
     <TextView
         android:id="@+id/login_zc"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="right"
-        android:text="新用户注册"/>
+        android:text="@string/new_user"/>
 
     <Button
         android:id="@+id/login_dl"
@@ -50,14 +50,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/main"
-
-        android:text="登录"/>
+        android:text="@string/btn_dl"/>
     <Button
         android:id="@+id/qq_dl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@color/main"
-        android:text="QQ登录"/>
-
+        android:text="@string/btn_qqdl"/>
+    <Button
+        android:id="@+id/exit_dl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/main"
+        android:text="@string/btn_exitdl"/>
 </LinearLayout>

@@ -28,11 +28,11 @@
                 android:id="@+id/user_head_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/whiteAdd"
                 android:layout_below="@+id/user_head_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dip"
-                android:text="@string/user_head_textView"/>
+                android:text="@string/user_head_textView"
+                android:textColor="@color/whiteAdd"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -45,26 +45,26 @@
                 android:id="@+id/collectionGoodsTextView"
                 style="@style/userCenter"
                 android:drawableTop="@mipmap/ic_collection_goods"
-                android:text="商品收藏"/>
+                android:text="@string/collectionGoods"/>
 
             <TextView
                 android:id="@+id/collectionStoreTextView"
                 style="@style/userCenter"
                 android:drawableTop="@mipmap/ic_collection_store"
-                android:text="店铺收藏"/>
+                android:text="@string/collectionStore"/>
 
             <TextView
                 android:id="@+id/myFootprintTextView"
                 style="@style/userCenter"
                 android:drawableTop="@mipmap/ic_user_footprint"
-                android:text="我的足迹"/>
+                android:text="@string/myfoot"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/orderTextView"
             style="@style/userAllGoods"
             android:drawableLeft="@mipmap/ic_user_order"
-            android:text="全部订单"
+            android:text="@string/allorder"
             />
 
         <LinearLayout
@@ -76,38 +76,38 @@
                 android:id="@+id/orderWaitPayTextView"
                 style="@style/userAllGoodsMessage"
                 android:drawableTop="@mipmap/ic_user_order_wait_drive"
-                android:text="未付款"/>
+                android:text="@string/WaitPay"/>
 
             <TextView
                 android:id="@+id/orderWaitDriveTextView"
                 style="@style/userAllGoodsMessage"
                 android:drawableTop="@mipmap/ic_user_order_wait_drive"
-                android:text="待发货"/>
+                android:text="@string/WaitDrive"/>
 
             <TextView
                 android:id="@+id/orderWaitReceiptTextView"
                 style="@style/userAllGoodsMessage"
                 android:drawableTop="@mipmap/ic_user_order_wait_receipt"
-                android:text="待收货"/>
+                android:text="@string/WaitReceipt"/>
 
             <TextView
                 android:id="@+id/orderWaitCommentTextView"
                 style="@style/userAllGoodsMessage"
                 android:drawableTop="@mipmap/ic_user_order_wait_comment"
-                android:text="待评价"/>
+                android:text="@string/WaitComment"/>
 
             <TextView
                 android:id="@+id/orderWaitRefundTextView"
                 style="@style/userAllGoodsMessage"
                 android:drawableTop="@mipmap/ic_user_order_wait_refund"
-                android:text="退款/货"/>
+                android:text="@string/WaitRefund"/>
         </LinearLayout>
 
         <TextView
             android:id="@+id/userMoneyTextView"
             style="@style/userAllGoods"
             android:drawableLeft="@mipmap/ic_user_property"
-            android:text="我的财产"
+            android:text="@string/userMoney"
             />
 
         <LinearLayout
@@ -119,34 +119,34 @@
                 android:id="@+id/propertyMoneyTextView"
                 style="@style/userAllGoodsMessage"
                 android:drawableTop="@mipmap/ic_user_property_money"
-                android:text="预存款"/>
+                android:text="@string/propertyMoney"/>
 
             <TextView
                 android:id="@+id/propertyCardTextView"
                 style="@style/userAllGoodsMessage"
                 android:drawableTop="@mipmap/ic_user_property_card"
-                android:text="充值卡"/>
+                android:text="@string/propertyCard"/>
 
             <TextView
                 android:id="@+id/propertyVouchersTextView"
                 style="@style/userAllGoodsMessage"
 
                 android:drawableTop="@mipmap/ic_user_property_vouchers"
-                android:text="代金券"/>
+                android:text="@string/propertyVouchers"/>
 
             <TextView
                 android:id="@+id/propertyRedTextView"
                 style="@style/userAllGoodsMessage"
 
                 android:drawableTop="@mipmap/ic_user_property_red"
-                android:text="红包"/>
+                android:text="@string/propertyRed"/>
 
             <TextView
                 android:id="@+id/propertyIntegralTextView"
                 style="@style/userAllGoodsMessage"
 
                 android:drawableTop="@mipmap/ic_user_property_integral"
-                android:text="积分"/>
+                android:text="@string/propertyIntegral"/>
         </LinearLayout>
 
         <TextView
@@ -155,14 +155,14 @@
             android:layout_marginTop="16dip"
 
             android:drawableLeft="@mipmap/ic_user_address"
-            android:text="收货地址"/>
+            android:text="@string/address"/>
 
         <TextView
             android:id="@+id/settingTextView"
             style="@style/userAddress"
 
             android:drawableLeft="@mipmap/ic_user_setting"
-            android:text="系统设置"/>
+            android:text="@string/setting"/>
     </LinearLayout>
 
 </RelativeLayout>

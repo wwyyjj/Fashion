@@ -3,6 +3,8 @@ package com.five.fashion.main;
 import android.app.Application;
 import android.content.Context;
 
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+
 /**
  * Created by wangyajie on 2017/11/9.
  */
@@ -13,6 +15,7 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        ZXingLibrary.initDisplayOpinion(this);
         context = getApplicationContext();
         mInstance = this;
     }
